@@ -6,7 +6,7 @@
 /*   By: aleslie <aleslie@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:49:42 by aleslie           #+#    #+#             */
-/*   Updated: 2022/01/27 12:49:45 by aleslie          ###   ########.fr       */
+/*   Updated: 2022/01/28 11:52:35 by aleslie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ static pthread_mutex_t	*init_forks(t_info *info)
 		free(info);
 		return (ft_error("malloc error"));
 	}
-	i = 0;
-	while (i < info->n_philo)
-	{
+	i = -1;
+	while (++i < info->n_philo)
 		pthread_mutex_init(&forks[i], NULL);
-		i++;
-	}
 	return (forks);
 }
 
@@ -45,8 +42,8 @@ static t_philo	*init_philos(t_info *info)
 	while (i < info->n_philo)
 	{
 		philos[i].state = creating;
-		philos[i].id = i;
 		philos[i].info = info;
+		philos[i].id = i;
 		philos[i].count_eat = 0;
 		philos[i].lfork = i;
 		philos[i].rfork = (i + 1) % info->n_philo;
@@ -74,9 +71,7 @@ static int	fill_and_check_info(t_info *info, char **argv, int argc)
 t_info	*init_info(char **argv, int argc)
 {
 	t_info	*info;
-	int		i;
 
-	i = 0;
 	info = (t_info *) malloc(sizeof(t_info));
 	if (!info)
 		return (ft_error("malloc error"));
@@ -88,7 +83,7 @@ t_info	*init_info(char **argv, int argc)
 		free(info);
 		return (ft_error("malloc error"));
 	}
-	pthread_mutex_init(&info->printer, NULL);
+	pthread_mutex_init(&info->m_print, NULL);
 	info->forks = init_forks(info);
 	if (!info->forks)
 		return (NULL);

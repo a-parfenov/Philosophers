@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aleslie <aleslie@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 12:49:06 by aleslie           #+#    #+#             */
-/*   Updated: 2022/01/27 12:49:11 by aleslie          ###   ########.fr       */
+/*   Created: 2022/01/28 10:42:34 by aleslie           #+#    #+#             */
+/*   Updated: 2022/01/28 12:20:45 by aleslie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	eat(t_philo *philo)
 void	try_take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->forks[philo->lfork]);
-	print_message(philo, "has taken a fork", get_time());
+	print_message(philo, "has taken a lfork", get_time());
 	pthread_mutex_lock(&philo->info->forks[philo->rfork]);
-	print_message(philo, "has taken a fork", get_time());
+	print_message(philo, "has taken a rfork", get_time());
 }
 
 void	put_forks(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: aleslie <aleslie@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:49:52 by aleslie           #+#    #+#             */
-/*   Updated: 2022/01/27 12:49:55 by aleslie          ###   ########.fr       */
+/*   Updated: 2022/01/28 13:19:38 by aleslie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ int	main(int argc, char **argv)
 	int				i;
 
 	if (argc != 5 && argc != 6)
-	{
-		printf("enter smtg like this \"./philo number_philo time_to_die"
-			" time_to_sleep [max_eat]\"\n");
-		return (1);
-	}
+		return (print_error());
 	info = init_info(argv + 1, argc - 1);
 	if (!info)
 		return (1);
@@ -34,6 +30,6 @@ int	main(int argc, char **argv)
 	pthread_create(&monitor, NULL, monitor_routine, (void *) info);
 	pthread_join(monitor, NULL);
 	destroy_forks(info);
-	free_memory(&info);
+	free_memory(info);
 	return (0);
 }

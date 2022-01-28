@@ -6,7 +6,7 @@
 /*   By: aleslie <aleslie@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:50:08 by aleslie           #+#    #+#             */
-/*   Updated: 2022/01/27 12:50:10 by aleslie          ###   ########.fr       */
+/*   Updated: 2022/01/28 12:47:34 by aleslie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	*monitor_routine(void *argv)
 	info = (t_info *) argv;
 	while (1)
 	{
-		t = get_time();
 		i = 0;
+		t = get_time();
 		while (i < info->n_philo)
 		{
 			if (info->philos[i].state == living
